@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-1(s0^&b^4i_8sruvb7j(z5^s4g8c#p_bx+$n-8vmmmlvyxkcj*
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ['https://plantopia-ecommerce-website-1.onrender.com']
 
 LANGUAGES = [
     ('en', _('English')),
