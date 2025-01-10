@@ -1,0 +1,397 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+
+
+
+    <!-- Hero Section Begin -->
+    <section class="hero-section">
+        <div class="hero-items owl-carousel">
+            <div class="single-hero-items set-bg" data-setbg="{% static 'img/hero-1a.jpg' %}">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-5">
+                            <span>Plants,Pots</span>
+                            <h1>Black friday</h1>
+                            <p>This Black Friday, watch your garden grow with savings up to 50% off on our most popular plants. Don't miss out on these limited-time deals at Plantopia!</p>
+                            <a href="{% url 'shop' %}" class="primary-btn">Shop Now</a>
+                        </div>
+                    </div>
+                    <div class="off-card">
+                        <h2>Sale <span>50%</span></h2>
+                    </div>
+                </div>
+            </div>
+            <div class="single-hero-items set-bg" data-setbg="{% static 'img/hero-2.jpg' %}">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-5">
+                            <span>Plants,Pots</span>
+                            <h1>Black friday</h1>
+                            <p>This Black Friday, watch your garden grow with savings up to 50% off on our most popular plants. Don't miss out on these limited-time deals at Plantopia!</p>
+                            <a href="{% url 'shop' %}" class="primary-btn">Shop Now</a>
+                        </div>
+                    </div>
+                    <div class="off-card">
+                        <h2>Sale <span>50%</span></h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Hero Section End -->
+
+    <!-- Banner Section Begin -->
+    <div class="banner-section spad">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="single-banner">
+                        <img src="{% static 'img/outdoor2.jpg' %}" alt="">
+                        <div class="inner-text">
+                            <h4><a href="{% url 'outdoor' %}">Outdoor Plants</a></h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="single-banner">
+                        <img src="{% static 'img/indoor2.jpg' %}" alt="">
+                        <div class="inner-text">
+                            <h4><a href="{% url 'indoor' %}">Indoor Plants</a></h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="single-banner">
+                        <img src="{% static 'img/succi.jpg' %}" alt="">
+                        <div class="inner-text">
+                            <h4>SuccuCacti</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Banner Section End -->
+
+    <!-- Women Banner Section Begin -->
+    <section class="women-banner spad">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="product-large set-bg" data-setbg="{% static 'img/indoor.jpg' %}">
+                        <h2>Indoor plants</h2>
+                        <a href="{% url 'indoor' %}">Discover More</a>
+                    </div>
+                </div>
+                <div class="col-lg-8 offset-lg-1">
+                    <div class="filter-control">
+                        <ul>
+                            <li class="active">Plants</li>
+                            <li>Pots</li>
+                            <li>Miniature</li>
+                            <li></li>
+                        </ul>
+                    </div>
+                    <div class="product-slider owl-carousel">
+                        {% for plant in indoor_plants %}
+                        <div class="product-item">
+                            <div class="pi-pic">
+                                <img src="{{ plant.images.first.image.url }}" alt="">
+                                <div class="sale">Sale</div>
+                                
+                                <div class="icon">
+                                      
+                                    <a href="{% url 'addwishlist' plant.id  %}"> <i class="icon_heart_alt"></i> </a>
+                                </div>
+                                
+                                <ul>
+                                    <li class="w-icon active"><a href="{% url 'addcart' plant.id %}"><i class="icon_bag_alt"></i></a></li>
+                                    <li class="quick-view"><a href="{% url 'product' plant.id %}">+ Quick View</a></li>
+                                    <li class="w-icon"><a href="{% url 'product' plant.id %}"><i class="fa fa-random"></i></a></li>
+                                </ul>
+                            </div>
+                            <div class="pi-text">
+                                <div class="catagory-name">{{plant.category}}</div>
+                                <a href="{% url 'product' plant.id %}">
+                                    <h5>{{plant.name}}</h5>
+                                </a>
+                                <div class="product-price">
+                                    ₹{{plant.price}}
+                                    <span>₹4000.00</span>
+                                </div>
+                            </div>
+                        </div>
+                       <!--  <div class="product-item">
+                            <div class="pi-pic">
+                                <img src="{% static 'img/products/women-1.jpg' %}" alt="">
+                                <div class="icon">
+                                    <i class="icon_heart_alt"></i>
+                                </div>
+                                <ul>
+                                    <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
+                                    <li class="quick-view"><a href="#">+ Quick View</a></li>
+                                    <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
+                                </ul>
+                            </div>
+                            <div class="pi-text">
+                                <div class="catagory-name">Shoes</div>
+                                <a href="#">
+                                    <h5>Guangzhou sweater</h5>
+                                </a>
+                                <div class="product-price">
+                                    $13.00
+                                </div>
+                            </div>
+                        </div> -->
+                        {% endfor %}
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Women Banner Section End -->
+
+    <!-- Deal Of The Week Section Begin-->
+    <section class="deal-of-week set-bg spad" data-setbg="{% static 'img/deal.jpg' %}">
+        <div class="container">
+            <div class="col-lg-6 text-center">
+                <div class="section-title">
+                    <h2>Exclusive Plant of the Week</h2>
+                    <p>Discover nature’s finest! Elevate your space with our handpicked luxury plant at an unbeatable price this week only." </p>
+                    <div class="product-price">
+                        ₹750.00
+                        <span>/Blue Cactus</span>
+                    </div>
+                </div>
+                <div class="countdown-timer" id="countdown">
+                    <div class="cd-item">
+                        <span>1</span>
+                        <p>Days</p>
+                    </div>
+                    <div class="cd-item">
+                        <span>12</span>
+                        <p>Hrs</p>
+                    </div>
+                    <div class="cd-item">
+                        <span>40</span>
+                        <p>Mins</p>
+                    </div>
+                    <div class="cd-item">
+                        <span>52</span>
+                        <p>Secs</p>
+                    </div>
+                </div>
+                <a href="{% url 'shop' %}" class="primary-btn">Shop Now</a>
+            </div>
+        </div>
+    </section>
+    <!-- Deal Of The Week Section End -->
+
+    <!-- Man Banner Section Begin -->
+    <section class="man-banner spad">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="filter-control">
+                        <ul>
+                            <li class="active">Plants</li>
+                            <li>Pots</li>
+                            <li>Miniatures</li>
+                            <li>Accessories</li>
+                        </ul>
+                    </div>
+                    <div class="product-slider owl-carousel">
+                         {% for plant in outdoor_plants %}
+                        <div class="product-item">
+                            <div class="pi-pic">
+                                <img src="{{ plant.images.first.image.url }}" alt="">
+                                <div class="sale">Sale</div>
+                                 <div class="icon">
+                                    <a href="{% url 'addwishlist' plant.id  %}"> <i class="icon_heart_alt"></i> </a>
+                                </div>
+                                <ul>
+                                    <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
+                                    <li class="quick-view"><a href="{% url 'product' plant.id %}">+ Quick View</a></li>
+                                    <li class="w-icon"><a href="{% url 'product' plant.id %}"><i class="fa fa-random"></i></a></li>
+                                </ul>
+                            </div>
+                            <div class="pi-text">
+                                <div class="catagory-name">{{plant.category}}</div>
+                                <a href="{% url 'product' plant.id %}">
+                                    <h5>{{plant.name}}</h5>
+                                </a>
+                                <div class="product-price">
+                                    ₹{{plant.price}}
+                                    <span>₹1200.00</span>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="col-lg-3 offset-lg-1">
+                    <div class="product-large set-bg m-large" data-setbg="{% static 'img/outdoor.jpg' %}">
+                        <h2>Outdoor Plant</h2>
+                        <a href="{% url 'indoor' %}">Discover More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Man Banner Section End -->
+
+    <!-- Instagram Section Begin -->
+    <div class="instagram-photo">
+        <div class="insta-item set-bg" data-setbg="{% static 'img/shade1.jpg' %}">
+            <div class="inside-text">
+                <i class="ti-instagram"></i>
+                <h5><a href="#">Plantopia_Collection</a></h5>
+            </div>
+        </div>
+        <div class="insta-item set-bg" data-setbg="{% static 'img/shade2.jpg' %}">
+            <div class="inside-text">
+                <i class="ti-instagram"></i>
+                <h5><a href="#">Plantopia_Collection</a></h5>
+            </div>
+        </div>
+        <div class="insta-item set-bg" data-setbg="{% static 'img/shade3.jpg' %}">
+            <div class="inside-text">
+                <i class="ti-instagram"></i>
+                <h5><a href="#">Plantopia_Collection</a></h5>
+            </div>
+        </div>
+        <div class="insta-item set-bg" data-setbg="{% static 'img/shade4.jpg' %}">
+            <div class="inside-text">
+                <i class="ti-instagram"></i>
+                <h5><a href="#">Plantopia_Collection</a></h5>
+            </div>
+        </div>
+        <div class="insta-item set-bg" data-setbg="{% static 'img/shade5.jpg' %}">
+            <div class="inside-text">
+                <i class="ti-instagram"></i>
+                <h5><a href="#">Plantopia_Collection</a></h5>
+            </div>
+        </div>
+        <div class="insta-item set-bg" data-setbg="{% static 'img/shade6.jpg' %}">
+            <div class="inside-text">
+                <i class="ti-instagram"></i>
+                <h5><a href="#">Plantopia_Collection</a></h5>
+            </div>
+        </div>
+    </div>
+    <!-- Instagram Section End -->
+
+    <!-- Latest Blog Section Begin -->
+    <section class="latest-blog spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-title">
+                        <h2>From The Blog</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                {% for i in recent_blogs %}
+                <div class="col-lg-4 col-md-6">
+                    <div class="single-latest-blog">
+                        <img src="{{i.image.url}}" alt="">
+                        <div class="latest-text">
+                            <div class="tag-list">
+                                <div class="tag-item">
+                                    <i class="fa fa-calendar-o"></i>
+                                    {{i.created_date|date:"Mj-d-Y"}}
+                                </div>
+                                <div class="tag-item">
+                                    <i class="fa fa-comment-o"></i>
+                                    5
+                                </div>
+                            </div>
+                            <a href="{% url 'blogdetails' i.id %}">
+                                <h4>{{i.title|slice:":50"}}..</h4>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                {% endfor %}
+            </div>
+            <div class="benefit-items">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="single-benefit">
+                            <div class="sb-icon">
+                                <img src="{% static 'img/icon-1.png' %}" alt="">
+                            </div>
+                            <div class="sb-text">
+                                <h6>Free Shipping</h6>
+                                <p>For all order over 99$</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="single-benefit">
+                            <div class="sb-icon">
+                                <img src="{% static 'img/icon-2.png' %}" alt="">
+                            </div>
+                            <div class="sb-text">
+                                <h6>Delivery On Time</h6>
+                                <p>If good have prolems</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="single-benefit">
+                            <div class="sb-icon">
+                                <img src="{% static 'img/icon-1.png' %}" alt="">
+                            </div>
+                            <div class="sb-text">
+                                <h6>Secure Payment</h6>
+                                <p>100% secure payment</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Latest Blog Section End -->
+
+    <!-- Partner Logo Section Begin -->
+    <!-- <div class="partner-logo">
+        <div class="container">
+            <div class="logo-carousel owl-carousel">
+                <div class="logo-item">
+                    <div class="tablecell-inner">
+                        <img src="{% static 'img/logo-carousel/logo-1.png' %}" alt="">
+                    </div>
+                </div>
+                <div class="logo-item">
+                    <div class="tablecell-inner">
+                        <img src="img/logo-carousel/logo-2.png" alt="">
+                    </div>
+                </div>
+                <div class="logo-item">
+                    <div class="tablecell-inner">
+                        <img src="img/logo-carousel/logo-3.png" alt="">
+                    </div>
+                </div>
+                <div class="logo-item">
+                    <div class="tablecell-inner">
+                        <img src="img/logo-carousel/logo-4.png" alt="">
+                    </div>
+                </div>
+                <div class="logo-item">
+                    <div class="tablecell-inner">
+                        <img src="img/logo-carousel/logo-5.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> -->
+    <!-- Partner Logo Section End -->
+
+{% endblock %}

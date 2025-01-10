@@ -1,0 +1,130 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+   <!-- Breadcrumb Section Begin -->
+    <div class="breacrumb-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="breadcrumb-text">
+                        <a href="{% url 'index' %}"><i class="fa fa-home"></i> Home</a>
+                        <span>Shop</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Breadcrumb Section Begin -->
+
+    <!-- Product Shop Section Begin -->
+    <section class="product-shop spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 col-sm-8 order-2 order-lg-1 produts-sidebar-filter">
+                    <div class="filter-widget">
+                        <h4 class="fw-title">Categories</h4>
+                        <ul class="filter-catagories">
+                             <li><a href="{% url 'indoor' %}">Indoor Plants</a></li>
+                            <li><a href="{% url 'outdoor' %}">Outdoor Plants</a></li>
+                            <li><a href="{% url 'succi' %}">Succulents & Cacti</a></li>
+                            <li><a href="#">Luxury Plants</a></li>
+                            <li><a href="#">Miniatures</a></li>
+                            <li><a href="#">Plant Accessories</a></li>
+                            <li><a href="#">Gardening Tools</a></li>
+                        </ul>
+                    </div>
+
+
+                    <form method="GET" action="{% url 'shop' %}">
+    <div class="filter-widget">
+        <h4 class="fw-title">Price</h4>
+        <div class="filter-range-wrap">
+            <div class="price-input">
+                <input type="text" name="min_price" placeholder="Min Price" value="{{ min_price }}" style="width:80px ; margin-right: 25px;">
+                <input type="text" name="max_price" placeholder="Max Price" value="{{ max_price }}" style="width:90px">
+            </div>
+            <br>
+            <button type="submit" style="border:none; margin-left: 0px;" class="filter-btn">Filter</button>
+           
+        </div>
+    </div>
+</form>
+
+
+              
+                    <div class="filter-widget">
+                        <h4 class="fw-title">Tags</h4>
+                        <div class="fw-tags">
+                              <a href="{% url 'indoor' %}">Indoor</a>
+                            <a href="{% url 'outdoor' %}">Outdoor</a>
+                            <a href="{% url 'succi' %}">Succi</a>
+                            <a href="#">Pots</a>
+                            <a href="#">Accessories</a>
+                            <a href="#">Miniatures</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-9 order-1 order-lg-2">
+                    <div class="product-show-option">
+                        <div class="row">
+                            <div class="col-lg-7 col-md-7">
+                                <div class="select-option">
+                                    <select class="sorting">
+                                        <option value="">Default Sorting</option>
+                                    </select>
+                                    <select class="p-show">
+                                        <option value="">Show:</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-lg-5 col-md-5 text-right">
+                                <p>Show 01- 09 Of 36 Product</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-list">
+                    {% if search_result %}
+                        <div class="row">
+                        	{% for i in search_result %}
+                            <div class="col-lg-4 col-sm-6">
+                                <div class="product-item">
+                                    <div class="pi-pic">
+                                        <img src="{{i.images.first.image.url}}" style="height:300px" alt="">
+                                        <div class="sale pp-sale">Sale</div>
+                                        <div class="icon">
+                                            <i class="icon_heart_alt"></i>
+                                        </div>
+                                        <ul>
+                                            <li class="w-icon active"><a href="{% url 'addcart' i.id  %}"><i class="icon_bag_alt"></i></a></li>
+                                            <li class="quick-view"><a href="{% url 'product' i.id %}">+ Quick View</a></li>
+                                            <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="pi-text">
+                                        <div class="catagory-name">{{i.category}}</div>
+                                        <a href="{% url 'product' i.id %}">
+                                            <h5>{{i.name}}</h5>
+                                        </a>
+                                        <div class="product-price">
+                                            ₹{{i.price}}
+                                            <span>$35.00</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                        {% else %}
+                        <p style="margin-left: 220px; margin-top: 200px; font-size:30px;"><strong>No Products found ..</strong> </p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Product Shop Section End -->
+
+
+
+{% endblock %}

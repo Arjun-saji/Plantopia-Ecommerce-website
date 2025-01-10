@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+{% load static %}
+{% block  content %}
+
+
+    <!-- Breadcrumb Section Begin -->
+    <div class="breacrumb-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="breadcrumb-text">
+                        <a href="{% url 'index' %}"><i class="fa fa-home"></i> Home</a>
+                        <span>FAQs</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Breadcrumb Section Begin -->
+
+    <!-- Faq Section Begin -->
+    <div class="faq-section spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="faq-accordin">
+                        <div class="accordion" id="accordionExample">
+                            <div class="card">
+                                <div class="card-heading active">
+                                    <a class="active" data-toggle="collapse" data-target="#collapseOne">
+                                        Do you offer a warranty or guarantee for the plants?
+                                    </a>
+                                </div>
+                                <div id="collapseOne" class="collapse show" data-parent="#accordionExample">
+                                    <div class="card-body">
+                                        <p>Yes, we offer a 30-day guarantee on all plants. If your plant arrives damaged or doesn't meet your expectations, contact us within 30 days for a replacement or refund.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-heading">
+                                    <a data-toggle="collapse" data-target="#collapseTwo">
+                                        How long does delivery take?
+                                    </a>
+                                </div>
+                                <div id="collapseTwo" class="collapse" data-parent="#accordionExample">
+                                    <div class="card-body">
+                                        <p>Standard shipping typically takes 5-7 business days. Expedited shipping options are also available at checkout. We package all plants carefully to ensure they arrive fresh and healthy.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-heading">
+                                    <a data-toggle="collapse" data-target="#collapseThree">
+                                        Do you offer plant care support after purchase?
+                                    </a>
+                                </div>
+                                <div id="collapseThree" class="collapse" data-parent="#accordionExample">
+                                    <div class="card-body">
+                                        <p>Yes, we are here to help! If you have any questions or concerns about your plant after purchase, feel free to contact our customer service team for advice and guidance.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-heading">
+                                    <a data-toggle="collapse" data-target="#collapseThree">
+                                        What is your return policy?
+                                    </a>
+                                </div>
+                                <div id="collapseThree" class="collapse" data-parent="#accordionExample">
+                                    <div class="card-body">
+                                        <p>We offer hassle-free returns within 30 days of purchase. If you're unsatisfied with your product, please contact our support team to initiate the return process.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Faq Section End -->
+
+
+
+
+{% endblock %}

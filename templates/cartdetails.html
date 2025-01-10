@@ -1,0 +1,139 @@
+{% extends "base.html" %}
+{% load static %}
+{% load custom_filters %}
+{% block content %}
+
+   <!-- Breadcrumb Section Begin -->
+    <div class="breacrumb-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="breadcrumb-text product-more">
+                        <a href="{% url 'index' %}"><i class="fa fa-home"></i> Home</a>
+                        <a href="{% url 'shop' %}">Shop</a>
+                        <span>Shopping Cart</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Breadcrumb Section Begin -->
+
+    <!-- Shopping Cart Section Begin -->
+    <section class="shopping-cart spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="cart-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Image</th>
+                                    <th class="p-name">Product Name</th>
+                                    <th>Price</th>
+                                    <th>Quantity</th>
+                                    <th>Total</th>
+                                    <th><i class="ti-close"></i></th>
+                                </tr>
+                            </thead>
+    <tbody>
+
+    {% for item in cart_items %}
+    <tr>
+        <!-- Product Image -->
+        <td class="cart-pic first-row">
+            <img src="{{ item.product.images.first.image.url }}" style="height: 100px; width: 100px;" alt="">
+        </td>
+
+        <!-- Product Name -->
+        <td class="cart-title first-row">
+            <h5>{{ item.product.name }}</h5>
+        </td>
+
+        <!-- Product Price -->
+        <td class="p-price first-row">₹{{ item.product.price }}</td>
+
+        <!-- Quantity Management with Forms -->
+        <td class="qua-col first-row">
+            <div class="quantity">
+                <!-- Decrement Button (-) -->
+                <form action="{% url 'update_quantity' item.id %}" method="POST" style="display: inline;">
+                    {% csrf_token %}
+                    <input type="hidden" name="action" value="decrement">
+                    <button type="submit" style="background: none; border: none;" class="qtybtn">-</button>
+                </form>
+
+                <!-- Current Quantity -->
+                <input type="text" value="{{ item.quantity }}" readonly style="width: 20px; text-align: center; border: None;">
+
+                <!-- Increment Button (+) -->
+                <form action="{% url 'update_quantity' item.id %}" method="POST" style="display: inline;">
+                    {% csrf_token %}
+                    <input type="hidden" name="action" value="increment">
+                    <button type="submit" style="background: none; border: none;" class="qtybtn">+</button>
+                </form>
+            </div>
+        </td>
+
+
+        <!-- Total Price for this item -->
+        <td class="total-price first-row">₹{{ item.quantity|multiply:item.product.price }}</td>
+         <td class="close-td first-row">
+            <form action="{% url 'cartupdate' %}" method="POST" style="display: inline;">
+        {% csrf_token %}
+               
+                <button type="submit" name="remove" value="{{ item.id }}" class="ti-close" style="background: none; border: none;"></button>
+            </form>
+            </td>
+
+    </tr>
+        {% empty %}
+        <tr>
+            <td colspan="6">No items in cart</td>
+        </tr>
+        {% endfor %}
+    
+</tbody>
+
+                        </table>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <div class="cart-buttons">
+                                <a href="{% url 'shop' %}" class="primary-btn continue-shop">Continue shopping</a>
+                                <a href="{% url 'cartdetails' %}" class="primary-btn up-cart">Update cart</a>
+                            </div>
+
+                            <div class="discount-coupon">
+                                <h6>Discount Codes</h6>
+                                <form method="POST"  action="{% url 'applycoupon' %}" class="coupon-form">
+                                     {% csrf_token %}
+                                    <input type="text" name="code" placeholder="Enter your codes">
+                                    <button type="submit" class="site-btn coupon-btn">Apply</button>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 offset-lg-4">
+                            <div class="proceed-checkout">
+                                <ul>
+                                    <li class="subtotal">Subtotal <span>₹{{ total_amount|floatformat:2 }}</span></li>
+                                    <li class="cart-total">Total <span>₹{{ total_amount|floatformat:2 }}</span></li>
+                                </ul>
+                                <a href="{% url 'checkout' %}" class="proceed-btn">PROCEED TO CHECK OUT</a>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Shopping Cart Section End -->
+
+
+
+
+
+
+
+
+{% endblock %}

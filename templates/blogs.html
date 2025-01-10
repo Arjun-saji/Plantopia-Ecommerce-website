@@ -1,0 +1,154 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+   <!-- Breadcrumb Section Begin -->
+    <div class="breacrumb-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="breadcrumb-text">
+                        <a href="#"><i class="fa fa-home"></i> Home</a>
+                        <span>Blog</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Breadcrumb Section Begin -->
+
+    <!-- Blog Section Begin -->
+    <section class="blog-section spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 col-sm-8 order-2 order-lg-1">
+                    <div class="blog-sidebar">
+                        <div class="search-form">
+                            <h4>Search</h4>
+                            <form action="#">
+                                <input type="text" placeholder="Search . . .  ">
+                                <button type="submit"><i class="fa fa-search"></i></button>
+                            </form>
+                        </div>
+                        <div class="blog-catagory">
+                            <h4>Categories</h4>
+                            <ul>
+                                  <li><a href="{% url 'indoor' %}">Indoor Plants</a></li>
+                            <li><a href="{% url 'outdoor' %}">Outdoor Plants</a></li>
+                            <li><a href="{% url 'succi' %}">Succulents & Cacti</a></li>
+                            <li><a href="#">Luxury Plants</a></li>
+                            <li><a href="#">Miniatures</a></li>
+                            <li><a href="#">Plant Accessories</a></li>
+                            <li><a href="#">Gardening Tools</a></li>
+                            </ul>
+                        </div>
+                        <div class="recent-post">
+                            <h4>Recent Post</h4>
+                            <div class="recent-blog">
+                                {% for i in recent_blogs %}
+                                <a href="#" class="rb-item">
+                                    <div class="rb-pic">
+                                        <img src="{{i.image.url}}" alt="">
+                                    </div>
+                                    <div class="rb-text">
+                                        <h6>{{i.title}}</h6>
+                                        <p>Plants<span>-{{i.created_date}}</span></p>
+                                    </div>
+                                </a>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <div class="blog-tags">
+                            <h4>Product Tags</h4>
+                            <div class="tag-item">
+                                <a href="{% url 'indoor' %}">Indoor</a>
+                            <a href="{% url 'outdoor' %}">Outdoor</a>
+                            <a href="{% url 'succi' %}">Succi</a>
+                            <a href="#">Pots</a>
+                            <a href="#">Accessories</a>
+                            <a href="#">Miniatures</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-9 order-1 order-lg-2">
+    <div class="row">
+        {% for i in blogs %}
+        <div class="col-lg-4 col-sm-6">
+            <div class="blog-item">
+                <div class="bi-pic">
+                    <img src="{{i.image.url}}" alt="">
+                </div>
+                <div class="bi-text">
+                    <a href="{% url 'blogdetails' i.id  %}">
+                        <h4>{{i.title}}</h4>
+                    </a>
+                    <p>travel <span>-{{i.created_date}}</span></p>
+                </div>
+            </div>
+        </div>
+        <!-- {% if forloop.counter|divisibleby:3 and not forloop.last %} -->
+            </div><div class="row">
+        <!-- {% endif %} -->
+        {% endfor %}
+    </div>
+
+    <div class="col-lg-12">
+        <div class="loading-more">
+            <i class="icon_loading"></i>
+            <a href="#">
+                Loading More
+            </a>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    <!--             <div class="col-lg-9 order-1 order-lg-2">
+                    <div class="row">
+                         {% for i in blogs %}
+                        <div class="col-lg-6 col-sm-6">
+                            
+                            <div class="blog-item">
+                               
+                                <div class="bi-pic">
+                                    <img src="{{i.image.url}}" alt="">
+                                </div>
+                                <div class="bi-text">
+                                    <a href="{% url 'blogdetails' i.id  %}">
+                                        <h4>{{i.title}}</h4>
+                                    </a>
+                                    <p>travel <span>-{{i.created_date}}</span></p>
+                                </div>
+                               
+                            </div>
+                            {% endfor %}
+                        </div>
+                    
+                    
+                    
+                        
+                        <div class="col-lg-12">
+                            <div class="loading-more">
+                                <i class="icon_loading"></i>
+                                <a href="#">
+                                    Loading More
+                                </a>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div> -->
+            </div>
+        </div>
+    </section>
+    <!-- Blog Section End -->
+
+{% endblock %}

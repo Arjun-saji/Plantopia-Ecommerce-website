@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+{% load static %}
+{% load custom_filters %}
+{% block content %}
+
+   <!-- Breadcrumb Section Begin -->
+    <div class="breacrumb-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="breadcrumb-text product-more">
+                        <a href="{% url 'index' %}"><i class="fa fa-home"></i> Home</a>
+                        <a href="{% url 'shop' %}">Shop</a>
+                        <span>My Wishlist</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Breadcrumb Section Begin -->
+
+    <!-- Shopping Cart Section Begin -->
+    <section class="shopping-cart spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="cart-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Image</th>
+                                    <th class="p-name">Product Name</th>
+                                    <th>Price</th>
+                                    <th>Add to Cart</th>
+
+                                    
+                                    <th><i class="ti-close"></i></th>
+                                </tr>
+                            </thead>
+    <tbody>
+
+    {% for item in wishlist_items %}
+    <tr>
+        <!-- Product Image -->
+        <td class="cart-pic first-row">
+            <img src="{{ item.product.images.first.image.url }}" style="height: 100px; width: 100px;" alt="">
+        </td>
+
+        <!-- Product Name -->
+        <td class="cart-title first-row" s>
+            <h5>{{ item.product.name }}</h5>
+        </td>
+
+
+        <!-- Total Price for this item -->
+        <td class="total-price first-row">₹{{ item.product.price }}</td>
+
+        <td class="cart-title first-row w-icon active" style="text-align: center;">
+            <a href="{% url 'addcart' item.product.id %}" style="color:red;"><i class="icon_bag_alt"></i></a>
+            </td>
+
+
+
+         <td class="close-td first-row">
+                <a href="{% url 'removewishlist' item.product.id %}"><button type="submit" value="{{ item.id }}" class="ti-close" style="background: none; border: none;"></button></a>
+            </td>
+
+    </tr>
+        {% empty %}
+        <tr>
+            <td colspan="6">No items in cart</td>
+        </tr>
+        {% endfor %}
+    
+</tbody>
+
+                        </table>
+                    </div>
+                    
+            </div>
+        </div>
+    </section>
+    <!-- Shopping Cart Section End -->
+
+
+
+
+
+
+
+
+{% endblock %}
