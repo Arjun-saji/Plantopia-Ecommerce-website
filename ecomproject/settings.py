@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-1(s0^&b^4i_8sruvb7j(z5^s4g8c#p_bx+$n-8vmmmlvyxkcj*
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['plantopia-ecommerce-website-1.onrender.com']
+ALLOWED_HOSTS = ['*']
 
 LANGUAGES = [
     ('en', _('English')),
@@ -98,11 +98,18 @@ WSGI_APPLICATION = 'ecomproject.wsgi.application'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 import dj_database_url
 
+# DATABASES = {
+#     #'default': dj_database_url.config(conn_max_age=600, ssl_require=True)
+#     'default': dj_database_url.config(default=os.getenv('DATABASE_URL')),
+# }
+# #
 DATABASES = {
-    #'default': dj_database_url.config(conn_max_age=600, ssl_require=True)
-    'default': dj_database_url.config(default=os.getenv('DATABASE_URL')),
+    'default': dj_database_url.config(
+        default=os.getenv('postgresql://plantopia_user:sjJYVsEynerKkqjCE9XvQDarHtO3kEic@dpg-cu0fpg5ds78s73dd75og-a/plantopia'),
+        conn_max_age=600,
+        ssl_require=True  # Use this only if your database requires SSL
+    )
 }
-#
 
 
 
